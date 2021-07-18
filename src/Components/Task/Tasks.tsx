@@ -7,18 +7,17 @@ import Loader from "../Loader/Loader";
 
 const Tasks = () => {
     const {loading} = useTypedSelector(state=> state.site);
-    const {tasks, currentPage} = useTypedSelector(state => state.task);
+    const {tasks, currentPage, sortDirection, sortField} = useTypedSelector(state => state.task);
     const {loadTasks} = useActions();
     useEffect( () => {
-        loadTasks(currentPage);
-    }, [currentPage]);
+        loadTasks(currentPage, sortDirection, sortField);
+    }, [currentPage, sortField, sortDirection]);
     return (
         <>  {loading ? <Loader/> :
             <TaskWrapper>
                 {tasks.map(task => <Task key={task.id} data={task}/>)}
             </TaskWrapper>}
         </>
-
     );
 }
 

@@ -1,7 +1,7 @@
 import {iSiteState, SiteActions, SiteActionTypes} from "../../types/site";
 
 const initialState: iSiteState = {
-    loading:false,
+    loading:true,
     errors: null,
     notification: []
 }

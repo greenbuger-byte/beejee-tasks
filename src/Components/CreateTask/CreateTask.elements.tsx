@@ -28,9 +28,25 @@ export const CreateTaskComponent = styled.div`
     border: 10px solid transparent;
     border-bottom: 10px solid ${eColors.BLANK};
   }
-  @media screen and (max-width: 1220px){
+  @media screen and (max-width: 640px){
+    box-sizing: border-box;
     position: fixed;
-    display: none;
+    margin: 0;
+    left: 0;
+    top:0;
+    overflow: hidden;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    &:before {
+      content: '';
+      border: none;
+    }
+    &:after {
+      content: '';
+      border: none;
+    }
+    }
   }
 `;
 

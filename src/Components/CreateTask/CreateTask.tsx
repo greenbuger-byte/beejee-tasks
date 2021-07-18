@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import {CreateTaskComponent, TitleCreateTask} from "./CreateTask.elements";
-import {Button, Input, InputControl, InputErrors, TextArea} from "../../GlobalStyles";
+import {Button, ButtonGroup, Input, InputControl, InputErrors, TextArea} from "../../GlobalStyles";
 import {useActions} from "../../hook/useActions";
 import {useTypedSelector} from "../../hook/useTypedSelector";
 
@@ -28,9 +28,11 @@ const CreateTask = () => {
                 <TextArea  value={text} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)} placeholder={'Текст задачи'}/>
                 {error!==null && error.text && <InputErrors> { error.text }  </InputErrors>}
             </InputControl>
-            <InputControl position={'center'}>
+            <InputControl> <ButtonGroup>
                 <Button type={"submit"} outlined onClick={() => isVisibleState(false)}>Отмена</Button>   <Button type={"submit"} onClick={createTaskHandler}>Добавить</Button>
+            </ButtonGroup>
             </InputControl>
+
         </CreateTaskComponent>
     );
 };

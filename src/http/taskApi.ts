@@ -1,5 +1,11 @@
-import {iTaskCreateRequest, iTaskRequest} from "../types/task";
-import { $host, createData, eRequests, errorResponse } from "./settings";
+import {
+    iFilterMaskTask,
+    is_SortDirectionTaskType,
+    iTaskCreateRequest,
+    SortDirectionTaskType,
+    SortFieldTaskType
+} from "../types/task";
+import {$host, createData, eRequests, errorResponse} from "./settings";
 
 
 export const taskApi = {
@@ -13,9 +19,23 @@ export const taskApi = {
             throw errorResponse(err);
         }
     },
-    get : async (page: number = 1) => {
+    edit : async (id: number, text:string, status: number) => {
         try{
-            const {data} = await $host.get(`${eRequests.TASKS_LOAD}?page=${page}`);
+            const formData = createData({text, status, token: localStorage.getItem('token')});
+            const {data} = await $host.post(`${eRequests.TASK_EDIT}${id}/`, formData);
+            return data;
+        }catch (err) {
+            // eslint-disable-next-line no-throw-literal
+            throw errorResponse(err);
+        }
+    },
+    get : async (page: number = 1, sortDirection: SortDirectionTaskType | null, sortField: SortFieldTaskType=SortFieldTaskType.ID) => {
+        try{
+            const filters: iFilterMaskTask = {page, sort_field: sortField};
+            if(is_SortDirectionTaskType(sortDirection)){
+                filters.sort_direction = sortDirection;
+            }
+            const {data} = await $host.get(`${eRequests.TASKS_LOAD}`, {params: filters});
             return data;
         }catch (err){
             // eslint-disable-next-line no-throw-literal

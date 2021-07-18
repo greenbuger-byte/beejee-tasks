@@ -12,6 +12,11 @@ export const LoaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: showing .5s ease-in-out;
+  @keyframes showing {
+    0% {opacity: 0}
+    100% {opacity: 1}
+  }
 `;
 export const LoaderBlock = styled.div`
   display: flex;
@@ -46,11 +51,14 @@ export const LoaderImage = styled.img`
     width: 60px;
     height: 60px;
     animation: rotator 1.5s ease-in-out infinite;
-  position: relative;
+   
+    position: relative;
   
+
   @keyframes rotator {
-    0%   { transform: rotateY(0deg)}
-    100%  { transform: rotateY(360deg) }
+    0%   { transform: translateY(0) }
+    30%   { transform: translateY(-3px) }
+    60%  { transform: translateY(10px) }
 }
 `;
 export const LoaderText = styled.p`

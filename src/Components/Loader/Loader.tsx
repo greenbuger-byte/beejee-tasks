@@ -1,12 +1,12 @@
 import React from 'react';
 import {LoaderBlock, LoaderImage, LoaderText, LoaderWrapper} from "./Loader.elements";
-import logo from '../../assets/beejee_small.png';
+import bee from '../../assets/bee.png';
 const Loader = () => {
     return (
         <LoaderWrapper>
             <LoaderBlock>
 
-                <LoaderImage src={logo} alt={'loading'}/>
+                <LoaderImage src={bee} alt={'loading'}/>
                 <LoaderText>Ищем задачи</LoaderText>
             </LoaderBlock>
 

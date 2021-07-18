@@ -5,48 +5,83 @@ export enum TaskActionType {
     GET_TASKS = 'TASK.GET_TASKS',
     GET_ERRORS = 'TASK.GET_ERRORS',
     GET_CURRENT_PAGE = 'TASK.GET_CURRENT_PAGE',
-    SET_VISIBLE = 'TASK.SET_VISIBLE'
+    SET_VISIBLE = 'TASK.SET_VISIBLE',
+    SORT_FIELD = 'TASK.SORT_FIELD',
+    SORT_DIRECTION = 'TASK.SORT_DIRECTION'
 }
+
+export enum SortFieldTaskType {
+    ID= 'id',
+    USERNAME = 'username',
+    EMAIL = 'email',
+    STATUS = 'status'
+}
+
+export enum SortFieldTaskTypeRu {
+    ID = 'По умолчанию',
+    USERNAME = 'По имени',
+    EMAIL = 'По email',
+    STATUS = 'По статусу'
+}
+
+export enum SortDirectionTaskType {
+    ASC = 'asc',
+    DESC = 'desc'
+}
+
+export enum TaskStatuses {
+    STATUS_0 = 'задача не выполнена',
+    STATUS_1 = 'задача не выполнена, отредактирована админом',
+    STATUS_10 = 'задача выполнена',
+    STATUS_11 = 'задача отредактирована админом и выполнена'
+}
+
+export enum TaskColorStatuses {
+    STATUS_0 = 'whitesmoke',
+    STATUS_1 = '#c2185b',
+    STATUS_10 = '#ffd600',
+    STATUS_11 = '#f57f17'
+}
+
+export interface iFilterMaskTask{
+    page: number;
+    sort_direction?: SortDirectionTaskType;
+    sort_field: SortFieldTaskType
+}
+
 
 export interface iTask{
     id: number,
     username: string;
     email: string;
     text: string;
+    status: number
 }
 
-//interface errors object in message
 export interface iTaskErrors {
     email?: string | null;
     username?: string | null;
     text?: string | null;
 }
 
-// interface for state task loaded
 interface iTaskMessage {
     tasks: iTask[],
-    total_task_count: number
+    total_page: number
 }
 
-// interface create task
 export interface iTaskCreateRequest{
     message: iTask;
     status: string | iTaskErrors;
 }
 
-// interface get tasks
-export interface iTaskRequest{
-    message: iTaskMessage | iTaskErrors;
-    status: string;
-}
-
-// interface initialState
 export interface iTaskState {
     tasks: iTask[];
     currentPage: number;
-    total_task_count: number;
+    total_page: number;
     error: iTaskErrors;
-    isVisible: boolean
+    isVisible: boolean;
+    sortField: SortFieldTaskType;
+    sortDirection: SortDirectionTaskType | null;
 }
 
 // =====> Actions interfaces //
@@ -58,7 +93,7 @@ interface createTaskAction {
 
 interface editTaskAction {
     type: TaskActionType.EDIT_TASK;
-    payload: iTaskState;
+    payload: iTask;
 }
 
 interface successTaskAction {
@@ -85,6 +120,16 @@ interface setVisibleTaskAction {
     payload: boolean
 }
 
+interface sortFieldTaskAction {
+    type: TaskActionType.SORT_FIELD;
+    payload: SortFieldTaskType;
+}
+
+interface sortDirectionTaskAction {
+    type: TaskActionType.SORT_DIRECTION;
+    payload: SortDirectionTaskType | null
+}
+
 export type TaskActions =
     editTaskAction
     | successTaskAction
@@ -92,14 +137,12 @@ export type TaskActions =
     | createTaskAction
     | getErrorsTaskAction
     | getCurrentPageTaskAction
-    | setVisibleTaskAction;
+    | setVisibleTaskAction
+    | sortFieldTaskAction
+    |sortDirectionTaskAction;
 
 
-// checks
-export function is_iTask (obj:any): obj is iTask{
-    return obj.message !==undefined;
-}
-
-export function is_iTaskErrors (obj:any): obj is iTaskErrors{
-    return obj.id === undefined;
+// check types
+export function is_SortDirectionTaskType (obj: any): obj is SortDirectionTaskType {
+    return obj !== null && obj !== undefined;
 }

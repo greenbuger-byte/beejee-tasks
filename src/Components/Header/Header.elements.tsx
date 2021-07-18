@@ -23,7 +23,20 @@ export const HeaderBlock = styled.div<{flex?: number}>`
   align-items: center;
 `;
 
+export const HeaderSpacer = styled.div<{flex: number}>`
+  flex: ${ ( {flex} ) => flex ? flex : 1 };
 
+  @media screen and (max-width: 400px){
+    display: none;
+  }
+`;
+
+export const HeaderUserName = styled.span`
+
+@media screen and (max-width: 400px){
+  display: none;
+}
+`
 
 export const HeaderProfileMenu = styled.h3`
   font-size: 13px;
@@ -33,25 +46,10 @@ export const HeaderProfileMenu = styled.h3`
   margin:0 20px;
   cursor: pointer;
   &:hover {
-    color: ${eColors.SECONDARY};
+    color: ${eColors.LIGHT_TEXT};
   }
-`;
-export const HeaderProfileIcon = styled.button`
-  background-color: white;
-  width: 30px;
-  height: 30px;
-  margin: 0 10px;
-  border-radius: 50%;
-  padding: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid transparent;
-  cursor: pointer;
-  
-  &:hover{
-    border: 1px solid ${eColors.SECONDARY};
-    color: ${eColors.PRIMARY};
+  @media screen and (max-width: 400px){
+    margin:0;
   }
 `;
 

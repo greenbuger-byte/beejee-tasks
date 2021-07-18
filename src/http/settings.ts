@@ -26,15 +26,10 @@ const errorResponse = (error: AxiosError<any>):string=> {
         return error.message;
     }
 }
-// setting interceptors
+
 const developerInterceptor = (config: AxiosRequestConfig) : AxiosRequestConfig => {
     if(config.url?.indexOf('?')===-1) config.url = config.url + '?developer=Denisenko';
     else config.url = config.url + '&developer=Denisenko';
-    return config;
-}
-
-const authInterceptor = ( config: AxiosRequestConfig ): AxiosRequestConfig=>{
-    config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
     return config;
 }
 
@@ -42,9 +37,7 @@ const $host = axios.create({ baseURL: process.env.REACT_APP_SERVERHOST,
     headers: {
         'Content-Type': 'application/json;charset=UTF-8'
     } });
-const $authHost = axios.create({ baseURL: process.env.REACT_APP_SERVERHOST});
 
 $host.interceptors.request.use(developerInterceptor);
-$authHost.interceptors.request.use(authInterceptor);
 
-export {$host, $authHost, errorResponse};
+export {$host, errorResponse};

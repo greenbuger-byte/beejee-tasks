@@ -1,19 +1,19 @@
 import React from 'react';
+import avatarSvg from "../../assets/avatar.svg"
+import {Button, Avatar, IconButton} from "../../GlobalStyles";
+import BxLogInCircleIcon from "../Icons/BxLogInCircleIcon";
+import Logo from "../Logo/Logo";
+import {useActions} from "../../hook/useActions";
+import {useTypedSelector} from "../../hook/useTypedSelector";
 import {
     HeaderBlock,
     HeaderComponent,
     HeaderWrapper,
     HeaderProfile,
     HeaderProfileMenu,
-    HeaderProfileIcon
+    HeaderUserName,
+    HeaderSpacer
 } from "./Header.elements";
-import logo from '../../assets/beejee_small.png';
-import {Button, Avatar} from "../../GlobalStyles";
-import BxLogInCircleIcon from "../Icons/BxLogInCircleIcon";
-import Logo from "../Logo/Logo";
-import {useActions} from "../../hook/useActions";
-import {useTypedSelector} from "../../hook/useTypedSelector";
-
 
 const Header = () => {
     const {toggleLoginFormActionCreator, logoutUserActionCreator} = useActions();
@@ -24,15 +24,15 @@ const Header = () => {
                 <HeaderBlock flex={1}>
                     <Logo/>
                 </HeaderBlock>
-                <HeaderBlock flex={1} />
+                <HeaderSpacer flex={1} />
                 <HeaderBlock flex={.3}>
                     {login ? <HeaderProfile >
-                        <Avatar src={logo}/>
+                        <Avatar src={avatarSvg}/>
                         <HeaderProfileMenu>
-                           ADMIN
-                            <HeaderProfileIcon onClick={logoutUserActionCreator}>
+                            <HeaderUserName>ADMIN</HeaderUserName>
+                            <IconButton margin={'0 10px'} onClick={logoutUserActionCreator}>
                                 <BxLogInCircleIcon />
-                            </HeaderProfileIcon>
+                            </IconButton>
                         </HeaderProfileMenu>
                     </HeaderProfile> :
                         <Button onClick={toggleLoginFormActionCreator} outlined>Вход</Button>

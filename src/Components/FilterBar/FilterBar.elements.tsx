@@ -16,9 +16,20 @@ export const FilterBarComponent = styled.div`
   -moz-box-shadow: -3px 10px 8px -5px rgba(34, 60, 80, 0.2);
   box-shadow: -3px 10px 8px -5px rgba(34, 60, 80, 0.2);
 `;
+
 export const FilterBlock = styled.div`
   margin:0 5px;
 `;
-export const FilterBurger = styled.i`
-  
+export const FilterRightBlock = styled.div`
+  margin:0 5px;
+  display: flex;
+  flex: 1;
+  position: relative;
+  justify-content: end;
+  align-items: center;
+`;
+export const SortDirectionReset = styled.div`
+  position: absolute;
+  top: -1px;
+  left: 51px;
 `;

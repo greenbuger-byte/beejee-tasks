@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {eColors} from "../../GlobalStyles";
 
 export const LoginContainer = styled.div`
   
@@ -14,8 +13,6 @@ export const LoginContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
- 
-  
 `;
 
 export const LoginBox = styled.div`

@@ -16,5 +16,9 @@ export const  FooterWrapper = styled.div`
 
 export const FooterSection = styled.div`
   flex: 1;
-  padding: 30px 10px;
+  padding: 25px 10px;
+`;
+export const FooterText = styled.p`
+  font-size: 13px;
+  font-weight: 300;
 `;

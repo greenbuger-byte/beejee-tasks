@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import GlobalStyles, {Column, Row, Spacer, Wrapper} from "./GlobalStyles";
+import GlobalStyles, {Spacer, Wrapper} from "./GlobalStyles";
 import Header from "./Components/Header/Header";
 import FilterBar from "./Components/FilterBar/FilterBar";
 import Login from "./Components/Login/Login";
@@ -8,7 +8,6 @@ import Footer from "./Components/Footer/Footer";
 import Tasks from "./Components/Task/Tasks";
 import Pagination from "./Components/Pagination/Pagination";
 import {useActions} from "./hook/useActions";
-import {checkUserActionCreator} from "./store/creators/userActionCreators";
 import Notifications from "./Components/Notifications/Notifications";
 
 function App() {
