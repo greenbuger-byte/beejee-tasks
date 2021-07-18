@@ -85,8 +85,8 @@ export const Button = styled.button<{color?: string, background?: string, outlin
   color: ${({color}) => color? color : eColors.PRIMARY};
   cursor: pointer;
   display: flex;
+  justify-content: center;
   padding: 11px 23px;
-  justify-content: space-between;
   font-size: 14px;
   transition: background-color .3s;
   &:hover{
