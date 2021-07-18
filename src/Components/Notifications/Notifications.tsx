@@ -7,15 +7,13 @@ import {useActions} from "../../hook/useActions";
 const Notifications  = () => {
     const {notification} = useTypedSelector(state=> state.site);
     const {removeNotification} = useActions();
-    const removeByTimeout = (id:string):void => {
-        setTimeout(removeNotification(id), 3000);
-    }
-    notification.map(n => removeByTimeout(n.id));
+    React.useEffect( () => {
+       if(notification.length>0) setTimeout(() => removeNotification(notification[0].id), 3000);
+    }, [notification]);
     return (
         <NotificationBar>
             {notification.map( n =>
-                <NotificationMessage>
-
+                <NotificationMessage key={n.id}>
                         <NotificationsText>
                             {n.text}
                         </NotificationsText>

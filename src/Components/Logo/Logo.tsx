@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from "../../assets/beejee_small.png";
 import {LogoText, LinedText, LogoImage, LogoContainer} from "./Logo.elements";
 import beeSvg from "../../assets/bee.png"
 interface LogoProps {

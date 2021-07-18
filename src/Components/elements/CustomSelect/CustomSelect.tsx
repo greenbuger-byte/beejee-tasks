@@ -17,7 +17,6 @@ const CustomSelect = () => {
     const {sortField} = useTypedSelector(state => state.task);
     const {changeSortField} = useActions();
     const sortFieldRu: {[index:string]:any} = SortFieldTaskTypeRu;
-    console.log(sortFieldRu);
     return (
         <CustomSelectComponent onClick={()=>changeIsOpen(prev => !prev)}>
             <CustomSelectBody> <CustomSelectLabel><BlockHiddenMobile>Сортировка:</BlockHiddenMobile></CustomSelectLabel> {sortFieldRu[sortField.toUpperCase()]} <ChevronCompactDownIcon/></CustomSelectBody>

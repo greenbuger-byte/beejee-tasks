@@ -8,6 +8,7 @@ export const toggleLoginFormActionCreator = () => (dispatch: Dispatch<UserAction
     dispatch({type: UserActionTypes.TOGGLE_LOGIN_FORM});
 }
 export const logoutUserActionCreator = ()=> (dispatch: Dispatch<UserActions>):void =>{
+    localStorage.removeItem('token');
     dispatch({type:UserActionTypes.LOGOUT_USER});
 }
 export const loginUserActionCreator = (login: string, password: string) => async (dispatch: Dispatch<UserActions | SiteActions>): Promise<void>  => {

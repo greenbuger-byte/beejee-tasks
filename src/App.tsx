@@ -11,14 +11,12 @@ import {useActions} from "./hook/useActions";
 import Notifications from "./Components/Notifications/Notifications";
 
 function App() {
-
     const { loginModal } = useTypedSelector(state => state.user);
     const {checkUserActionCreator} = useActions();
     useEffect( () => { checkUserActionCreator() }, [] );
     return (
       <>
           <GlobalStyles/>
-
           <Header/>
           <Wrapper>
               <FilterBar/>
@@ -29,13 +27,9 @@ function App() {
               <Notifications/>
           </Wrapper>
           <Footer/>
-
           {loginModal && <Login/>}
       </>
-
     );
-};
-
-
+}
 
 export default App;

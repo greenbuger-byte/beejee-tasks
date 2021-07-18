@@ -82,7 +82,7 @@ export const TaskTitleLeft = styled.div`
   align-items: center;
 `;
 
-export const TaskEmail = styled.h3`
+export const TaskEmail = styled.div`
   font-size: 13px;
   font-weight: 200;
   color: ${eColors.LIGHT_TEXT};

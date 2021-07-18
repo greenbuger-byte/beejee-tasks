@@ -1,5 +1,5 @@
 import styled, {createGlobalStyle} from "styled-components";
-import {strict} from "assert";
+
 export enum eColors {
     PRIMARY='#000',
     SECONDARY = '#ffd600',
