@@ -21,6 +21,7 @@ const Login = () => {
                 <LoginHeader><Logo/></LoginHeader>
                 <InputControl>
                     <Input
+                        placeholder = 'Логин'
                         value={username}
                         error = {status!==null && Boolean(status.username)}
                         onChange={(e:ChangeEvent<HTMLInputElement>) => setUsername( e.target.value ) }
@@ -32,7 +33,7 @@ const Login = () => {
                         value={password}
                         type={'password'}
                         error = {status!==null && Boolean(status.password)}
-                        placeholder={'password'}
+                        placeholder={'Пароль'}
                         onChange={(e:ChangeEvent<HTMLInputElement>) => setPassword( e.target.value ) }
                     />
                     {status!==null && status.password && <InputErrors> { status.password }  </InputErrors>}

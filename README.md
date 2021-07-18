@@ -16,4 +16,6 @@
 ### Используется
 * react,
 * typescript
+* redux
+* redux-thunk
 
