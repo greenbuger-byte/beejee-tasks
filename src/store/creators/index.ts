@@ -2,6 +2,7 @@ import * as loginUserCreators  from './userActionCreators';
 import * as taskCreators from './tastActionCreators';
 import * as siteCreators from './siteActionCreator';
 
-export  default {
+const AllActionCreators = {
     ...loginUserCreators , ...taskCreators, ...siteCreators
 }
+export  default AllActionCreators;

@@ -13,7 +13,7 @@ import Notifications from "./Components/Notifications/Notifications";
 function App() {
     const { loginModal } = useTypedSelector(state => state.user);
     const {checkUserActionCreator} = useActions();
-    useEffect( () => { checkUserActionCreator() }, [] );
+    useEffect( () => { checkUserActionCreator() }, [] );  // eslint-disable-line react-hooks/exhaustive-deps
     return (
       <>
           <GlobalStyles/>

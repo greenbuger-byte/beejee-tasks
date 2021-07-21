@@ -7,7 +7,7 @@ export enum TaskActionType {
     GET_CURRENT_PAGE = 'TASK.GET_CURRENT_PAGE',
     SET_VISIBLE = 'TASK.SET_VISIBLE',
     SORT_FIELD = 'TASK.SORT_FIELD',
-    SORT_DIRECTION = 'TASK.SORT_DIRECTION'
+    SORT_DIRECTION = 'TASK.SORT_DIRECTION',
 }
 
 export enum SortFieldTaskType {
@@ -82,6 +82,7 @@ export interface iTaskState {
     isVisible: boolean;
     sortField: SortFieldTaskType;
     sortDirection: SortDirectionTaskType | null;
+    editArea: boolean
 }
 
 // =====> Actions interfaces //
@@ -130,6 +131,8 @@ interface sortDirectionTaskAction {
     payload: SortDirectionTaskType | null
 }
 
+
+
 export type TaskActions =
     editTaskAction
     | successTaskAction
@@ -139,7 +142,7 @@ export type TaskActions =
     | getCurrentPageTaskAction
     | setVisibleTaskAction
     | sortFieldTaskAction
-    |sortDirectionTaskAction;
+    | sortDirectionTaskAction;
 
 
 // check types

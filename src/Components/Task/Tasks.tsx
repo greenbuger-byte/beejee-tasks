@@ -11,7 +11,7 @@ const Tasks = () => {
     const {loadTasks} = useActions();
     useEffect( () => {
         loadTasks(currentPage, sortDirection, sortField);
-    }, [currentPage, sortField, sortDirection]);
+    }, [currentPage, sortField, sortDirection]); // eslint-disable-line react-hooks/exhaustive-deps
     return (
         <>  {loading ? <Loader/> :
             <TaskWrapper>

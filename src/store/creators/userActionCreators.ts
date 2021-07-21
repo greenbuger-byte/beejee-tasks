@@ -4,6 +4,13 @@ import {userApi} from "../../http/userApi";
 import {SiteActions, SiteActionTypes} from "../../types/site";
 import {v4} from "uuid";
 
+export const checkLoginUser = () => (dispatch: Dispatch<UserActions>):void => {
+    if(!localStorage.getItem('token') && localStorage.getItem('token')===null) {
+        localStorage.removeItem('token');
+        dispatch({type:UserActionTypes.LOGOUT_USER});
+    }
+}
+
 export const toggleLoginFormActionCreator = () => (dispatch: Dispatch<UserActions>): void => {
     dispatch({type: UserActionTypes.TOGGLE_LOGIN_FORM});
 }

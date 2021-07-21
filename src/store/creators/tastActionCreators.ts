@@ -66,8 +66,8 @@ export const createTask = (email: string, username: string, text: string) =>
 
 export const editTask  = (task: iTask) =>async (dispatch: Dispatch<TaskActions | SiteActions >):Promise<void> => {
    try{
-       const editStatus= await taskApi.edit(task.id, task.text, task.status);
        if(localStorage.getItem('token')){
+           const editStatus= await taskApi.edit(task.id, task.text, task.status);
            if(editStatus.status === 'ok') {
                await  dispatch({type: TaskActionType.EDIT_TASK, payload: task});
                dispatch({type: SiteActionTypes.NOTIFICATION_CREATE, payload: {id: String(v4()), text: 'Задача отредактирована 👍'}});
@@ -75,7 +75,7 @@ export const editTask  = (task: iTask) =>async (dispatch: Dispatch<TaskActions |
                dispatch({type: SiteActionTypes.NOTIFICATION_CREATE, payload: {id: String(v4()), text: 'Не удалось отредактировать задачу 😔'}});
            }
        }else{
-           dispatch({type: SiteActionTypes.NOTIFICATION_CREATE, payload: {id: String(v4()), text: 'Вы не авторизованы 🛡'}});
+           dispatch({type: SiteActionTypes.NOTIFICATION_CREATE, payload: {id: String(v4()), text: 'Вы не авторизованы 🛡, изменения не будут сохранены'}});
        }
     }catch (err) {
         dispatch({type: SiteActionTypes.NOTIFICATION_CREATE, payload: {id: String(v4()), text: err.message || String(err)}});

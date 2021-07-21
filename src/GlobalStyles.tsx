@@ -73,6 +73,7 @@ export const TextArea = styled.textarea<{height?:number}>`
   margin: 0;
   outline: none;
   resize: vertical;
+  wrap: hard;
   &::-webkit-scrollbar {
     width: 1em;
   }

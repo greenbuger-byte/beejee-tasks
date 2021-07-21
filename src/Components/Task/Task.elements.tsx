@@ -49,6 +49,7 @@ export const TaskBody = styled.div<{bgColor?: string}>`
 
 export const TaskRow = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: start;
   font-weight: 400;
@@ -57,9 +58,10 @@ export const TaskRow = styled.div`
   margin-top: 10px;
   height: 100%;
   overflow-y: scroll;
+  width: 100%;
   color: ${eColors.LIGHT_TEXT};
   &::-webkit-scrollbar {
-    width: 1em;
+    width: .1em;
   }
 `;
 

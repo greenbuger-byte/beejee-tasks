@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {
     TaskAdminStatusChanger,
     TaskBody,
@@ -11,7 +11,7 @@ import {
     TaskRow,
     TaskStatus,
     TaskTitle,
-    TaskTitleLeft
+    TaskTitleLeft,
 } from "./Task.elements";
 import {iTask, TaskColorStatuses, TaskStatuses} from "../../types/task";
 import BxDotsVerticalRoundedIcon from "../Icons/BxDotsVerticalRoundedIcon";
@@ -32,26 +32,31 @@ const Task: React.FC<iTaskProps> = ({data}) => {
     const [textEdit, setTextEdit] = React.useState<string>(data.text);
     const [isVisibleEditStatus, setIsVisibleEditStatus] = React.useState<boolean>(false);
     const [statusTask, setStatusTask] = React.useState<number>(0);
-    const {editTask} = useActions();
+    const {editTask, checkLoginUser} = useActions();
     const {login} = useTypedSelector(state => state.user);
     const closeEditHandler = () => {
         setTextEdit(data.text);
         changeIsEditArea(false);
     }
-    const editTaskHandler = async (st:number) => {
-        setIsVisibleEditStatus(false);
-        setStatusTask(st);
-        const editedTask = data;
-        if(editedTask.text !== textEdit){
-            editedTask.text = textEdit;
-            editedTask.status = st+1;
-        }else {
-            editedTask.status = st;
-        }
-        await editTask(editedTask);
-        changeIsEditArea(false);
-    }
 
+    const editTaskHandler = async (st:number) => {
+        await checkLoginUser();
+        if(login){
+            setIsVisibleEditStatus(false);
+            setStatusTask(st);
+            const editedTask = data;
+            if(editedTask.text !== textEdit){
+                editedTask.text = textEdit;
+                editedTask.status = st+1;
+            }else {
+                editedTask.status = st;
+            }
+            await editTask(editedTask);
+            changeIsEditArea(false);
+        }
+
+    }
+    const currentTextWithWhiteSpaces = data.text.split('\n').map((w, i) => <React.Fragment key={i}>{w}<br/></React.Fragment>);
     return (
        <TaskContainer>
            <TaskBody bgColor={TaskColorStatuses[`STATUS_${data.status}` as keyof typeof TaskColorStatuses]}>
@@ -88,7 +93,15 @@ const Task: React.FC<iTaskProps> = ({data}) => {
                    </TaskEditBar> }
                </TaskTitle>
                <TaskRow>
-                   {isEditArea ? <TextArea onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setTextEdit(e.target.value)} height={185}>{textEdit}</TextArea> : <>{data.text}</>}
+                   {isEditArea ?
+                       <TextArea
+                           wrap={'hard'}
+                           value={textEdit}
+                           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setTextEdit(e.target.value)}
+                           height={185}
+                       />
+                       :
+                       <>{ currentTextWithWhiteSpaces }</>}
                </TaskRow>
            </TaskBody>
        </TaskContainer>

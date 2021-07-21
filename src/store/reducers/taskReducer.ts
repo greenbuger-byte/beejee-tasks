@@ -7,7 +7,8 @@ const initialState: iTaskState = {
     error: {},
     isVisible: false,
     sortDirection: null,
-    sortField: SortFieldTaskType.ID
+    sortField: SortFieldTaskType.ID,
+    editArea: false
 }
 
 export const taskReducer = (state:iTaskState = initialState, action: TaskActions):iTaskState =>{
@@ -27,9 +28,9 @@ export const taskReducer = (state:iTaskState = initialState, action: TaskActions
         case TaskActionType.SET_VISIBLE:
             return {...state, isVisible: action.payload};
         case TaskActionType.SORT_DIRECTION:
-            return {...state, sortDirection: action.payload}
+            return {...state, sortDirection: action.payload};
         case TaskActionType.SORT_FIELD:
-            return {...state, sortField: action.payload}
+            return {...state, sortField: action.payload};
         default:
             return {...state};
     }

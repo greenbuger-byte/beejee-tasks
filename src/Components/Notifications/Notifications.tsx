@@ -9,7 +9,7 @@ const Notifications  = () => {
     const {removeNotification} = useActions();
     React.useEffect( () => {
        if(notification.length>0) setTimeout(() => removeNotification(notification[0].id), 3000);
-    }, [notification]);
+    }, [notification]);  // eslint-disable-line react-hooks/exhaustive-deps
     return (
         <NotificationBar>
             {notification.map( n =>
